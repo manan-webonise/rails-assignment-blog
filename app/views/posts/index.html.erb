@@ -1,0 +1,15 @@
+<h1>This is my Blog</h1>
+
+<button> Publish / Unpublish </button>
+<ul>
+  <% @posts.each do |post| %>
+  <li>
+    <%= post.title %> 
+    <br> 
+    <span> Body :  </span>
+    <%= post.body %>
+    <br> <br>
+  </li>
+  <% end %>
+</ul>
+<p>Find me in app/views/posts/index.html.erb</p>
