@@ -4,3 +4,9 @@
     <span> Body :  </span>
     <%= @post.body %>
     <br> <br>
+<button style="padding: 5px 15px;"> 
+  <%= link_to "Edit", edit_post_path(@post) %></li>
+</button>
+<button style="padding: 5px 15px;"> 
+  <%= link_to "Delete", post_path(@post), method: :delete %>
+</button>

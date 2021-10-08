@@ -1,15 +1,20 @@
 <h1>This is my Blog</h1>
 
-<button> Publish / Unpublish </button>
 <ul>
   <% @posts.each do |post| %>
   <li>
-    <%= link_to post.title, post %>
-    <br> 
-    <span> Body :  </span>
-    <%= link_to post.body, post %>
-    <br> <br>
+    <% post.ispublished = false %>
+    <div class="blog">  
+      <%= link_to post.title, post %>
+      <br> 
+      <span> Body :  </span>
+      <%= post.body%>
+    <br>
   </li>
+  <br>
   <% end %>
 </ul>
+<button>
+<%= link_to "New Post", new_post_path %>
+</button>
 <p>Find me in app/views/posts/index.html.erb</p>
