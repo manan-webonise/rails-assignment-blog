@@ -10,3 +10,9 @@
 <button style="padding: 5px 15px;"> 
   <%= link_to "Delete", post_path(@post), method: :delete %>
 </button>
+
+<h2>Comments</h2>
+<%= render @post.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
