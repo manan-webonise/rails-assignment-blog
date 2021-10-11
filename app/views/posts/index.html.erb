@@ -3,13 +3,18 @@
 <ul>
   <% @posts.each do |post| %>
   <li>
-    <% post.ispublished = false %>
+  <% if post.ispublished? %>
     <div class="blog">  
       <%= link_to post.title, post %>
       <br> 
       <span> Body :  </span>
-      <%= post.body%>
+      <%= post.body%> <br>
+      <%= post.ispublished %>
+      
     <br>
+    <% else %>
+    <h1> Else wala chalra h </h1>
+    <% end %>
   </li>
   <br>
   <% end %>

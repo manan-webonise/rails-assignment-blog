@@ -35,6 +35,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def publish
+    @post = Post.find(params[:id])
+    @post.ispublished = true
+    @post.save
+    redirect_to root_path
+  end
+
+  def unpublish
+    @post = Post.find(params[:id])
+    @post.ispublished = false
+    @post.save
+    redirect_to root_path
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

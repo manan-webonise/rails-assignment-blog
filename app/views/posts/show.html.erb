@@ -4,11 +4,21 @@
     <span> Body :  </span>
     <%= @post.body %>
     <br> <br>
+
 <button style="padding: 5px 15px;"> 
   <%= link_to "Edit", edit_post_path(@post) %></li>
 </button>
+
 <button style="padding: 5px 15px;"> 
   <%= link_to "Delete", post_path(@post), method: :delete %>
+</button>
+
+<button style="padding: 5px 15px;"> 
+  <%= link_to "Publish", publish_post_path(@post), method: :post %>
+</button>
+
+<button style="padding: 5px 15px;"> 
+  <%= link_to "Unpublish", unpublish_post_path(@post), method: :get %>
 </button>
 
 <h2>Comments</h2>
