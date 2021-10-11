@@ -1,10 +1,14 @@
 class PostsController < ApplicationController
+  
+  
   def index
     @posts = Post.all
   end
+  
+  before_action :find_id, only: [:edit, :update, :show, :destory, :unpublish, :publish]
 
   def show
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
   end
 
   def new
@@ -22,11 +26,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
 
     if @post.update(post_params)
       redirect_to @post
@@ -36,21 +40,19 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post = Post.find(params[:id])
-    @post.ispublished = true
-    @post.save
+    #@post = Post.find(params[:id])
+    @post.update(ispublished: true)
     redirect_to root_path
   end
 
   def unpublish
-    @post = Post.find(params[:id])
-    @post.ispublished = false
-    @post.save
+    #@post = Post.find(params[:id])
+    @post.update(ispublished: false)
     redirect_to root_path
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
     @post.destroy
 
     redirect_to root_path
@@ -60,5 +62,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def find_id
+    @post = Post.find(params[:id])
   end
 end
