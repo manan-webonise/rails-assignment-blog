@@ -1,14 +1,13 @@
 class PostsController < ApplicationController
-  before_action :find_id, except: [:index, :create]
-  def find_id
-    @post = Post.friendly.find(params[:id])
-  end
+  before_action :find_id, only: [:edit, :publish, :destroy]
 
   def index
     @posts = Post.all
   end
 
-  def show; end
+  def show
+    @post = Post.friendly.find(params[:id])
+  end
 
   def new
     @post = Post.new
@@ -35,13 +34,8 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post.update(ispublished: true)
-    redirect_to root_path
-  end
-
-  def unpublish
-    @post.update(ispublished: false)
-    redirect_to root_path
+    @post.update(ispublished: !@post.ispublished)
+    redirect_to post_path(@post)
   end
 
   def destroy
@@ -53,5 +47,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def find_id
+    @post = Post.find_by(slug: params[:id])
   end
 end

@@ -14,11 +14,7 @@
 </button>
 
 <button style="padding: 5px 15px;"> 
-  <%= link_to "Publish", publish_post_path(@post), method: :post %>
-</button>
-
-<button style="padding: 5px 15px;"> 
-  <%= link_to "Unpublish", unpublish_post_path(@post), method: :get %>
+  <%= link_to post_status(@post), publish_post_path(@post) %>
 </button>
 
 <h2>Comments</h2>
