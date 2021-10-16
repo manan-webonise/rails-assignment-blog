@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
-  before_action :find_id, only: [:edit, :publish, :destroy]
+  before_action :find_id, only: [:edit, :publish, :destroy, :update]
+  #before_action :authenticate_model!
 
   def index
+    @posts = Post.all
+  end
+
+  def home
     @posts = Post.all
   end
 
@@ -35,7 +40,7 @@ class PostsController < ApplicationController
 
   def publish
     @post.update(ispublished: !@post.ispublished)
-    redirect_to post_path(@post)
+    redirect_to root_path
   end
 
   def destroy
