@@ -1,40 +1,31 @@
 <h1>This is my Blog</h1>
-  <% if !model_signed_in? %>
-  <%= link_to "Sign In", new_model_session_path %>
-<ul>
-  <% @posts.each do |post| %>
-  <% if post.ispublished? %>
-  <li>
-    <div class="blog">  
-      <%= post.title %>
-      <br> 
-      <span> Body :  </span>
-      <%= post.body%> <br>
-    <br>
-    <% end %>
-  </li>
-  <br>
-  <% end %>
-</ul>
-<% end %>
+<% if !user_signed_in? %>
+<%= link_to "Sign In", new_user_session_path %>
 
-<% if model_signed_in? %>
-    <%= link_to "Sign Out", destroy_model_session_path, method: :delete %>
+<% else %>
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% end %>
 <ul>
   <% @posts.each do |post| %>
   <li>
-    <div class="blog">  
+    <div class="blog">
+      <% if user_signed_in? %>
       <%= link_to post.title, post %>
+      <% else %>
+      <%= post.title %>
+      <% end %>
       <br> 
       <span> Body :  </span>
       <%= post.body%> <br>
       <span>Publish Status :  </span>
       <%= post.ispublished %>
+      
     <br>
   </li>
   <br>
   <% end %>
 </ul>
+<% if user_signed_in? %>
 <button>
 <%= link_to "New Post", new_post_path %>
 </button>

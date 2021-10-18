@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :models
+  devise_for :users
   root 'posts#index'
   resources :posts do
     member do
