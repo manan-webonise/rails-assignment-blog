@@ -1,0 +1,24 @@
+<h1> This is <%= @post.id %> Blog</h1>
+    <%= @post.title %> 
+    <br> 
+    <span> Body :  </span>
+    <%= @post.body %>
+    <br> <br>
+
+<button style="padding: 5px 15px;"> 
+  <%= link_to "Edit", edit_post_path(@post) %></li>
+</button>
+
+<button style="padding: 5px 15px;"> 
+  <%= link_to "Delete", post_path(@post), method: :delete %>
+</button>
+
+<button style="padding: 5px 15px;"> 
+  <%= link_to post_status(@post), publish_post_path(@post) %>
+</button>
+
+<h2>Comments</h2>
+<%= render @post.comments %>
+<br>
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>

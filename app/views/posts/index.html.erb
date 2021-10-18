@@ -1,0 +1,24 @@
+<h1>This is my Blog</h1>
+
+<ul>
+  <% @posts.each do |post| %>
+  <li>
+  <% if post.ispublished? %>
+    <div class="blog">  
+      <%= link_to post.title, post %>
+      <br> 
+      <span> Body :  </span>
+      <%= post.body%> <br>
+      <%= post.ispublished %>
+      
+    <br>
+    <% else %>
+    <h1> Else wala chalra h </h1>
+    <% end %>
+  </li>
+  <br>
+  <% end %>
+</ul>
+<button>
+<%= link_to "New Post", new_post_path %>
+</button>
