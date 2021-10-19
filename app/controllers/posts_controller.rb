@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_id, only: [:edit, :publish, :destroy]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     if user_signed_in?
