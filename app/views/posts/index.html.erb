@@ -1,24 +1,32 @@
 <h1>This is my Blog</h1>
+<% if !user_signed_in? %>
+<%= link_to "Sign In", new_user_session_path %>
 
+<% else %>
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% end %>
 <ul>
   <% @posts.each do |post| %>
   <li>
-  <% if post.ispublished? %>
-    <div class="blog">  
+    <div class="blog">
+      <% if user_signed_in? %>
       <%= link_to post.title, post %>
+      <% else %>
+      <%= post.title %>
+      <% end %>
       <br> 
       <span> Body :  </span>
       <%= post.body%> <br>
+      <span>Publish Status :  </span>
       <%= post.ispublished %>
       
     <br>
-    <% else %>
-    <h1> Else wala chalra h </h1>
-    <% end %>
   </li>
   <br>
   <% end %>
 </ul>
+<% if user_signed_in? %>
 <button>
 <%= link_to "New Post", new_post_path %>
 </button>
+<% end %>
